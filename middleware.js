@@ -10,12 +10,12 @@ export default withAuth(
 
     if (
       [
-        "/login",
-        "/signup",
-        "/api/auth",
-        "/api/register",
-        "/datadeletion",
-        "/reset-password",
+        // "/login",
+        // "/signup",
+        // "/api/auth",
+        // "/api/register",
+        // "/datadeletion",
+        // "/reset-password",
       ].some((prefix) => path.startsWith(prefix))
     ) {
       if (isAuthenticated) {
