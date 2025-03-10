@@ -2,15 +2,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import SignOutButton from "./SignOutButton";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  // cosmt[(showSignout, setShowsignout)] = useState();
   const [isLogin, setIsLogin] = useState(false);
+  const { data: session, status } = useSession(); // Destructure session and status
 
   useEffect(() => {
-    // Check if user data exists in localStorage (or any custom auth method)
-    const user = localStorage.getItem("user");
-    setIsLogin(!!user);
-  }, []);
+    setIsLogin(!!session); // Update state based on session existence
+  }, [session]); // Runs whenever session changes
 
   return (
     <nav className="w-full p-5 flex justify-between bg-black overflow-hidden">
@@ -38,7 +39,7 @@ const Navbar = () => {
           </>
         ) : (
           <div>
-            <SignOutButton /> <p>User Logged In</p>
+            <SignOutButton /> <p>{session?.user?.email}</p>
           </div>
         )}
       </div>
